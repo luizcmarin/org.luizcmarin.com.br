@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR" class="kk-theme-light">
+
+<head>
+  <meta charset="UTF-8" />
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+  />
+  <title>Kobi Org</title>
+  <meta name="description" content="A pauta da reunião de anciãos e o que o corpo de anciãos organiza — offline-first." />
+  <link rel="icon" href="./icons/kobi-org.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/kobi-org-apple-touch-icon.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>
+    (() => {
+      const erros = [];
+      let mostrada = false;
+
+      const anotar = (texto) => {
+        if (erros.length < 6) erros.push(String(texto).slice(0, 800));
+      };
+
+      // O Safari não põe a mensagem no `stack`, ao contrário do Chrome: as duas vão.
+      const descrever = (motivo) =>
+        motivo instanceof Error
+          ? `${motivo.name}: ${motivo.message}\n${motivo.stack ?? ''}`.trim()
+          : String(motivo);
+
+      // Na CAPTURA: o erro de carga de um <script> ou de um <link> não borbulha,
+      // e só a janela em captura o vê. O de execução chega como ErrorEvent.
+      addEventListener(
+        'error',
+        (evento) => {
+          const alvo = evento.target;
+          if (evento instanceof ErrorEvent) {
+            const onde = `${evento.filename}:${evento.lineno}:${evento.colno}`;
+            anotar(`${descrever(evento.error ?? evento.message)} (${onde})`);
+          } else if (alvo instanceof HTMLScriptElement && alvo.src) {
+            anotar(`não carregou: ${alvo.src}`);
+          } else if (alvo instanceof HTMLLinkElement && alvo.href) {
+            anotar(`não carregou: ${alvo.href}`);
+          }
+        },
+        true,
+      );
+      addEventListener('unhandledrejection', (evento) => anotar(descrever(evento.reason)));
+
+      /*
+       * `forcada` é a falha que o main.ts declarou: o #app pode estar no
+       * "Carregando...", e ele sai da frente. Sem ela, a guarda só fala sobre um
+       * #app vazio — o app que desenhou qualquer coisa está de pé, e um erro
+       * anotado depois disso é assunto dele.
+       */
+      const mostrar = (forcada) => {
+        const app = document.getElementById('app');
+        if (mostrada || app === null || (!forcada && app.firstElementChild !== null)) return;
+        mostrada = true;
+
+        /*
+         * O piso é o iOS 15.4 (o `<dialog>` e o `Object.hasOwn` chegam ali, e
+         * nenhum build os rebaixa). Abaixo dele, "tente de novo" é conselho
+         * errado: a frase diz que é a versão, e como sair dela.
+         */
+        const ios = /\bOS (\d+)_(\d+)/.exec(navigator.userAgent);
+        const antigo =
+          /iPhone|iPad|iPod/.test(navigator.userAgent) &&
+          ios !== null &&
+          Number(ios[1]) * 100 + Number(ios[2]) < 1504;
+        const explicacao = antigo
+          ? `<p>Este aparelho usa o iOS ${ios[1]}.${ios[2]}, e o Kobi Org precisa do iOS 15.4 ou mais
+          novo. Atualize em Ajustes, Geral, Atualização de Software, e abra o app de novo.</p>`
+          : `<p>Alguma coisa impediu o aplicativo de começar. O que está salvo continua no aparelho:
+          nada foi perdido.</p>
+          <p>Tente de novo. Se esta tela voltar, mande uma captura dela a quem cuida do app: o
+          quadro abaixo diz o que aconteceu.</p>`;
+
+        const caixa = document.createElement('div');
+        caixa.className = 'aviso abertura-falhou';
+        caixa.setAttribute('role', 'alert');
+        caixa.innerHTML = `
+          <h2>O Kobi Org não abriu</h2>
+          ${explicacao}
+          <pre class="detalhe"></pre>
+          <div class="abertura-falhou__acoes">
+            <button type="button" data-acao="recarregar">Tentar de novo</button>
+            <button type="button" data-acao="limpar">Recarregar sem o cache</button>
+          </div>
+        `;
+        caixa.querySelector('.detalhe').textContent = [
+          erros.length > 0
+            ? erros.join('\n\n')
+            : 'Nenhum erro foi registrado: o aplicativo não respondeu em 20 segundos. ' +
+              'Numa conexão lenta ele ainda pode aparecer sozinho.',
+          navigator.userAgent,
+          location.href,
+        ].join('\n\n');
+
+        caixa.querySelector('[data-acao="recarregar"]').addEventListener('click', () => {
+          location.reload();
+        });
+        /*
+         * O cache é a CÓPIA do aplicativo (o service worker e o que ele guardou),
+         * e não os dados: o banco mora no OPFS e a chave dele no IndexedDB, e
+         * nenhum dos dois é tocado aqui. É a saída de um service worker que
+         * ficou servindo um pacote quebrado, onde o recarregar comum volta
+         * sempre para a mesma tela.
+         *
+         * Só o do Org: a origem pode ser compartilhada (luizcmarin.github.io), e o
+         * filtro é o do `@kobi/kit/utilities/aparelho.js` — o service worker pelo
+         * escopo da página, o cache pelo prefixo do app ou pelo escopo no fim.
+         */
+        caixa.querySelector('[data-acao="limpar"]').addEventListener('click', async () => {
+          try {
+            const escopo = new URL('./', location.href).href;
+            const registros = (await navigator.serviceWorker?.getRegistrations?.()) ?? [];
+            await Promise.all(
+              registros
+                .filter((registro) => registro.scope === escopo)
+                .map((registro) => registro.unregister()),
+            );
+            const doApp = (nome) =>
+              nome.startsWith('org_') || nome.startsWith('org-') || nome.endsWith(`-${escopo}`);
+            const nomes = (await globalThis.caches?.keys()) ?? [];
+            await Promise.all(nomes.filter(doApp).map((nome) => caches.delete(nome)));
+          } finally {
+            location.reload();
+          }
+        });
+
+        if (forcada) app.hidden = true;
+        document.body.append(caixa);
+
+        // O app que chegou atrasado (a rede estava lenta) tira a guarda da frente.
+        if (!forcada) {
+          new MutationObserver((_, observador) => {
+            if (app.firstElementChild === null) return;
+            observador.disconnect();
+            caixa.remove();
+          }).observe(app, { childList: true });
+        }
+      };
+
+      window.__falhaDaAbertura = (erro) => {
+        anotar(descrever(erro));
+        mostrar(true);
+      };
+
+      // O módulo é adiado e roda ANTES do `load`: um erro anotado até ali é dele.
+      // O segundo de folga é do idioma que não é o padrão, que baixa depois.
+      addEventListener('load', () => {
+        if (erros.length > 0) setTimeout(() => mostrar(false), 1000);
+      });
+      // Sem erro nenhum, o prazo conta da chegada da página, e não do `load`: um
+      // pedaço do pacote que nunca termina de baixar segura o `load` para sempre.
+      setTimeout(() => mostrar(false), 20000);
+    })();
+  </script>
+    <script>
+    (() => {
+      const idioma = localStorage.getItem('org_idioma');
+      if (idioma) {
+        // A direção sai do `Intl`, como em `direcaoDe()` de `@kobi/idiomas`.
+        try {
+          const local = new Intl.Locale(idioma);
+          const info = local.getTextInfo ? local.getTextInfo() : local.textInfo;
+          // Sem os dois (Firefox), a escrita do idioma: a lista é a de `direcaoDe()`.
+          const rtl = info
+            ? info.direction === 'rtl'
+            : ['Adlm', 'Arab', 'Hebr', 'Mand', 'Nkoo', 'Rohg', 'Samr', 'Syrc', 'Thaa'].includes(
+                local.maximize().script,
+              );
+          if (rtl) document.documentElement.dir = 'rtl';
+        } catch {
+          // Tag que o Intl recusa: a tela fica da esquerda para a direita.
+        }
+        document.documentElement.lang = idioma;
+      }
+
+      const salvo = localStorage.getItem('org_tema');
+      const escuro =
+        salvo === 'escuro' ||
+        (salvo === null && matchMedia('(prefers-color-scheme: dark)').matches);
+      const raiz = document.documentElement.classList;
+      raiz.toggle('kk-theme-dark', escuro);
+      raiz.toggle('kk-theme-light', !escuro);
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute('content', escuro ? '#0f1115' : '#ffffff');
+
+      // As preferências de acessibilidade, pela mesma razão do tema: texto que
+      // nasce pequeno e cresce depois, ou animação que roda antes de a escolha
+      // chegar, é o que quem pediu não pode receber. A regra do nome da classe
+      // é a de `classesDeAcessibilidade`, no Kit — e este bloco não conhece
+      // chave nenhuma, só a regra.
+      try {
+        const a11y = JSON.parse(localStorage.getItem('org_acessibilidade') || 'null');
+        if (a11y) {
+          for (const [chave, valor] of Object.entries(a11y)) {
+            if (valor === true) raiz.add(`kk-a11y-${chave}`);
+            else if (typeof valor === 'number' && valor !== 100) raiz.add(`kk-a11y-${chave}-${valor}`);
+          }
+        }
+      } catch (_) {}
+
+      // O Safari anterior ao 17.4 não conhece `@scope`, e descarta calado as
+      // seções de módulo do estilo.css. A reserva é gerada no build
+      // (`reservaDeScope`, em scripts/vite/plugins.ts), num arquivo que só este
+      // navegador baixa, e as regras dela só casam sob a marca.
+      if (typeof CSSScopeRule === 'undefined') {
+        raiz.add('sem-scope');
+        const folha = document.createElement('link');
+        folha.rel = 'stylesheet';
+        folha.href = './reserva-scope.css';
+        document.head.append(folha);
+      }
+    })();
+  </script>
+  <script type="module" crossorigin src="./assets/index-DlNqF4dE.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-BFC4F1Tt.css">
+<link rel="manifest" href="./manifest.webmanifest"></head>
+
+<body>
+  <div id="app" aria-busy="true"></div>
+</body>
+
+</html>

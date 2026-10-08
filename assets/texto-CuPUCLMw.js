@@ -1,0 +1,1 @@
+var e=/[̀-ͯ]/g;function t(t){return t.normalize(`NFD`).replace(e,``)}function n(e){return t(e).toLowerCase().trim()}function r(e,...t){let r=n(e);return r===``||t.some(e=>n(e??``).includes(r))}function i(e,t=`-`){return n(e).replace(/[^a-z0-9]+/g,` `).trim().replaceAll(` `,t)}export{r as n,i as t};

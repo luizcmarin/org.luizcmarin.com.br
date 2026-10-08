@@ -1,0 +1,1 @@
+function e(e){let t=Number(e??0);return Number.isInteger(t)&&t>0?t:null}export{e as t};
