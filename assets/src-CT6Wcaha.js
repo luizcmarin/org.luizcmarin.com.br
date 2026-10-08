@@ -1,0 +1,1 @@
+function e(e){return e}var t=e({name:`org`,displayName:`Kobi Org`,apiEndpoint:``,themeColor:`#7048e8`,targets:[`pwa`],features:{anotacoes:!0,calendario:!0,pautas:!0,designacoes:!0,grupos:!0,escalas:!0,programa:!0,publica:!0,testemunho:!0,territorios:!0,quadro:!0,pessoas:!0,congregacoes:!0,perfil:!0,tutorial:!0,sobre:!0}});export{t};
