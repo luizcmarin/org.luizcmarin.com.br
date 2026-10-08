@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="UTF-8" />
-    <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
-  />
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
   <title>Kobi Org</title>
-  <meta name="description" content="A pauta da reunião de anciãos e o que o corpo de anciãos organiza — offline-first." />
+  <meta name="description" content="As escalas, o programa das reuniões, a reunião pública, o testemunho público, os territórios e
+      a pauta dos anciãos, num aplicativo que mora no seu aparelho. Gratuito, sem conta e sem nuvem —
+      e funciona sem internet depois da primeira abertura." />
   <link rel="icon" href="./icons/kobi-org.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./icons/kobi-org-apple-touch-icon.png" />
     <meta name="theme-color" content="#ffffff" />
@@ -91,7 +91,7 @@
           erros.length > 0
             ? erros.join('\n\n')
             : 'Nenhum erro foi registrado: o aplicativo não respondeu em 20 segundos. ' +
-              'Numa conexão lenta ele ainda pode aparecer sozinho.',
+            'Numa conexão lenta ele ainda pode aparecer sozinho.',
           navigator.userAgent,
           location.href,
         ].join('\n\n');
@@ -168,8 +168,8 @@
           const rtl = info
             ? info.direction === 'rtl'
             : ['Adlm', 'Arab', 'Hebr', 'Mand', 'Nkoo', 'Rohg', 'Samr', 'Syrc', 'Thaa'].includes(
-                local.maximize().script,
-              );
+              local.maximize().script,
+            );
           if (rtl) document.documentElement.dir = 'rtl';
         } catch {
           // Tag que o Intl recusa: a tela fica da esquerda para a direita.
@@ -201,7 +201,7 @@
             else if (typeof valor === 'number' && valor !== 100) raiz.add(`kk-a11y-${chave}-${valor}`);
           }
         }
-      } catch (_) {}
+      } catch (_) { }
 
       // O Safari anterior ao 17.4 não conhece `@scope`, e descarta calado as
       // seções de módulo do estilo.css. A reserva é gerada no build
@@ -216,7 +216,7 @@
       }
     })();
   </script>
-  <script type="module" crossorigin src="./assets/index-DlNqF4dE.js"></script>
+  <script type="module" crossorigin src="./assets/index-CCl639Mp.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-BFC4F1Tt.css">
 <link rel="manifest" href="./manifest.webmanifest"></head>
 
