@@ -159,16 +159,6 @@
       border: 2px solid var(--marca);
     }
 
-    .endereco__link {
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--marca-forte);
-      word-break: break-all;
-      user-select: all;
-      -webkit-user-select: all;
-    }
-
     .endereco__acoes {
       display: flex;
       flex-wrap: wrap;
@@ -391,7 +381,6 @@
         </button>
         <a class="botao botao--cheio" id="abrir" href="./" data-t="abrir">Abrir o Kobi Org</a>
         <button type="button" class="botao" id="desinstalar" data-t="desinstalar" hidden>Desinstalar</button>
-        <button type="button" class="botao" id="copiar" data-t="copiar">Copiar o endereço</button>
       </div>
       <p class="estado" id="estado" role="status"></p>
     </div>
@@ -402,7 +391,6 @@
         <span class="seu" data-t="seu" hidden>o seu</span>
       </h2>
       <ol class="passos">
-        <li><span data-t="and1">Abra esta página no <strong>Chrome</strong>.</span></li>
         <li>
           <span data-t="and2">
             Toque em <strong>Instalar agora</strong>, no alto da página. Se o botão não aparecer, abra
@@ -426,7 +414,6 @@
       </h2>
       <p class="nota" data-t="iosReq">Precisa do iOS ou iPadOS 15.4 ou mais novo.</p>
       <ol class="passos">
-        <li><span data-t="ios1">Abra esta página no <strong>Safari</strong>.</span></li>
         <li>
           <span data-t="ios2">
             Toque em <strong>Compartilhar</strong>, o quadrado com a seta para cima (no iPhone fica na
@@ -568,18 +555,13 @@
           lema: "The schedules, the meeting program, the public meeting, public witnessing, the territories and the agenda of the elders’ meeting, in an app that lives on your device. Free, no account and no cloud — and it works offline after the first launch.",
           instalar: "Install now",
           abrir: "Open Kobi Org",
-          copiar: "Copy the address",
-          copiado: "Address copied. Now just paste it in the browser or in a message.",
-          selecionado: "The address is selected: touch and hold to copy it.",
           android: "Android phone or tablet",
           ios: "iPhone or iPad",
           computador: "Computer",
           seu: "yours",
-          and1: "Open this page in <strong>Chrome</strong>.",
           and2: "Tap <strong>Install now</strong> at the top of the page. If the button does not show, open the Chrome menu (the <strong>three dots</strong> in the top corner) and tap <strong>Install app</strong> or <strong>Add to Home screen</strong>.",
           and3: "Confirm with <strong>Install</strong>. The purple Kobi Org icon appears on your home screen.",
           sempre: "Always open the app from that icon.",
-          ios1: "Open this page in <strong>Safari</strong>.",
           ios2: "Tap <strong>Share</strong>, the square with the arrow pointing up (on iPhone it is in the bottom bar; on iPad, at the top).",
           ios3: "Scroll the list and tap <strong>Add to Home Screen</strong>.",
           ios4: "Tap <strong>Add</strong>. The Kobi Org icon appears on your Home Screen.",
@@ -616,18 +598,13 @@
           lema: "Los turnos, el programa de las reuniones, la reunión pública, la predicación pública, los territorios y el orden del día de la reunión de ancianos, en una aplicación que vive en tu dispositivo. Gratis, sin cuenta y sin nube — y funciona sin internet después de la primera apertura.",
           instalar: "Instalar ahora",
           abrir: "Abrir Kobi Org",
-          copiar: "Copiar la dirección",
-          copiado: "Dirección copiada. Ahora solo tienes que pegarla en el navegador o en un mensaje.",
-          selecionado: "La dirección está seleccionada: mantén pulsado para copiarla.",
           android: "Móvil o tableta Android",
           ios: "iPhone o iPad",
           computador: "Ordenador",
           seu: "el tuyo",
-          and1: "Abre esta página en <strong>Chrome</strong>.",
           and2: "Toca <strong>Instalar ahora</strong>, arriba de la página. Si el botón no aparece, abre el menú de Chrome (los <strong>tres puntos</strong>, en la esquina de arriba) y toca <strong>Instalar aplicación</strong> o <strong>Añadir a pantalla de inicio</strong>.",
           and3: "Confirma en <strong>Instalar</strong>. El icono morado de Kobi Org aparece en la pantalla de inicio.",
           sempre: "Abre siempre la aplicación desde ese icono.",
-          ios1: "Abre esta página en <strong>Safari</strong>.",
           ios2: "Toca <strong>Compartir</strong>, el cuadrado con la flecha hacia arriba (en el iPhone está en la barra de abajo; en el iPad, arriba).",
           ios3: "Desplaza la lista y toca <strong>Añadir a la pantalla de inicio</strong>.",
           ios4: "Toca <strong>Añadir</strong>. El icono de Kobi Org aparece en la pantalla de inicio.",
@@ -664,18 +641,13 @@
           lema: "Grafiki, program zebrań, zebranie publiczne, świadczenie publiczne, tereny i plan spotkania grona starszych — w aplikacji, która mieszka na twoim urządzeniu. Za darmo, bez konta i bez chmury, a po pierwszym uruchomieniu działa bez internetu.",
           instalar: "Zainstaluj teraz",
           abrir: "Otwórz Kobi Org",
-          copiar: "Skopiuj adres",
-          copiado: "Adres skopiowany. Teraz wystarczy wkleić go w przeglądarce albo w wiadomości.",
-          selecionado: "Adres jest zaznaczony: dotknij i przytrzymaj, żeby go skopiować.",
           android: "Telefon lub tablet z Androidem",
           ios: "iPhone lub iPad",
           computador: "Komputer",
           seu: "twoje",
-          and1: "Otwórz tę stronę w <strong>Chrome</strong>.",
           and2: "Dotknij <strong>Zainstaluj teraz</strong> u góry strony. Jeśli przycisk się nie pojawi, otwórz menu Chrome (<strong>trzy kropki</strong> w górnym rogu) i dotknij <strong>Zainstaluj aplikację</strong> lub <strong>Dodaj do ekranu głównego</strong>.",
           and3: "Potwierdź przyciskiem <strong>Zainstaluj</strong>. Fioletowa ikona Kobi Org pojawi się na ekranie głównym.",
           sempre: "Zawsze otwieraj aplikację z tej ikony.",
-          ios1: "Otwórz tę stronę w <strong>Safari</strong>.",
           ios2: "Dotknij <strong>Udostępnij</strong> — kwadratu ze strzałką w górę (na iPhonie jest na dolnym pasku, na iPadzie u góry).",
           ios3: "Przewiń listę i dotknij <strong>Do ekranu początkowego</strong>.",
           ios4: "Dotknij <strong>Dodaj</strong>. Ikona Kobi Org pojawi się na ekranie początkowym.",
@@ -712,18 +684,13 @@
           lema: "Графіки, програма зібрань, публічна промова, служіння в громадських місцях, території та план зустрічі ради старійшин — у застосунку, що живе на твоєму пристрої. Безкоштовно, без облікового запису й без хмари, і після першого запуску працює без інтернету.",
           instalar: "Встановити зараз",
           abrir: "Відкрити Kobi Org",
-          copiar: "Скопіювати адресу",
-          copiado: "Адресу скопійовано. Тепер просто встав її в браузер або в повідомлення.",
-          selecionado: "Адресу виділено: торкнися й утримуй, щоб скопіювати.",
           android: "Телефон або планшет Android",
           ios: "iPhone або iPad",
           computador: "Комп'ютер",
           seu: "твій",
-          and1: "Відкрий цю сторінку в <strong>Chrome</strong>.",
           and2: "Торкнися <strong>Встановити зараз</strong> угорі сторінки. Якщо кнопки немає, відкрий меню Chrome (<strong>три крапки</strong> у верхньому куті) і торкнися <strong>Установити додаток</strong> або <strong>Додати на головний екран</strong>.",
           and3: "Підтверди кнопкою <strong>Установити</strong>. Фіолетовий значок Kobi Org з'явиться на головному екрані.",
           sempre: "Завжди відкривай застосунок через цей значок.",
-          ios1: "Відкрий цю сторінку в <strong>Safari</strong>.",
           ios2: "Торкнися <strong>Поширити</strong> — квадрата зі стрілкою вгору (на iPhone він на нижній панелі, на iPad — угорі).",
           ios3: "Прогорни список і торкнися <strong>На Початковий екран</strong>.",
           ios4: "Торкнися <strong>Додати</strong>. Значок Kobi Org з'явиться на Початковому екрані.",
@@ -760,18 +727,13 @@
           lema: "当番表、集会のプログラム、公開講演、公共エリア伝道、区域、長老団の話し合いの予定表。すべてをあなたの端末の中に置くアプリです。無料で、アカウントもクラウドも不要。最初に開いた後はインターネットなしで使えます。",
           instalar: "今すぐインストール",
           abrir: "Kobi Org を開く",
-          copiar: "アドレスをコピー",
-          copiado: "アドレスをコピーしました。ブラウザーやメッセージに貼り付けてください。",
-          selecionado: "アドレスを選択しました。長押ししてコピーしてください。",
           android: "Android のスマートフォン・タブレット",
           ios: "iPhone・iPad",
           computador: "パソコン",
           seu: "お使いの端末",
-          and1: "このページを <strong>Chrome</strong> で開きます。",
           and2: "ページ上部の<strong>今すぐインストール</strong>をタップします。ボタンが出ない場合は、Chrome のメニュー（右上の<strong>縦の三点</strong>）を開き、<strong>アプリをインストール</strong>または<strong>ホーム画面に追加</strong>をタップします。",
           and3: "<strong>インストール</strong>で確定します。ホーム画面に紫の Kobi Org のアイコンが現れます。",
           sempre: "アプリは必ずこのアイコンから開いてください。",
-          ios1: "このページを <strong>Safari</strong> で開きます。",
           ios2: "<strong>共有</strong>ボタン（上向き矢印の付いた四角）をタップします。iPhone では下のバー、iPad では上にあります。",
           ios3: "一覧をスクロールして<strong>ホーム画面に追加</strong>をタップします。",
           ios4: "<strong>追加</strong>をタップします。ホーム画面に Kobi Org のアイコンが現れます。",
@@ -808,18 +770,13 @@
           lema: "值班表、聚会节目、公众演讲、公众场所见证、地区和长老会议的议程，都在一个存放于你设备上的应用里。免费，无需账号，没有云端——首次打开后无需联网也能使用。",
           instalar: "立即安装",
           abrir: "打开 Kobi Org",
-          copiar: "复制地址",
-          copiado: "地址已复制。粘贴到浏览器或消息里即可。",
-          selecionado: "地址已选中：长按即可复制。",
           android: "Android 手机或平板",
           ios: "iPhone 或 iPad",
           computador: "电脑",
           seu: "你的设备",
-          and1: "用 <strong>Chrome</strong> 打开本页。",
           and2: "点按页面顶部的<strong>立即安装</strong>。如果没有出现按钮，打开 Chrome 菜单（右上角的<strong>三个点</strong>），点按<strong>安装应用</strong>或<strong>添加到主屏幕</strong>。",
           and3: "点按<strong>安装</strong>确认。紫色的 Kobi Org 图标会出现在主屏幕上。",
           sempre: "以后请始终从这个图标打开应用。",
-          ios1: "用 <strong>Safari</strong> 打开本页。",
           ios2: "点按<strong>共享</strong>，即带向上箭头的方框（iPhone 在底部栏，iPad 在顶部）。",
           ios3: "滚动列表，点按<strong>添加到主屏幕</strong>。",
           ios4: "点按<strong>添加</strong>。Kobi Org 图标会出现在主屏幕上。",
@@ -856,18 +813,13 @@
           lema: "당번표, 집회 프로그램, 공개 강연, 공개 증거, 구역, 장로 모임의 협의 사항을 기기 안에 머무는 앱 하나로. 무료이고 계정도 클라우드도 없으며, 처음 연 뒤에는 인터넷 없이도 작동합니다.",
           instalar: "지금 설치",
           abrir: "Kobi Org 열기",
-          copiar: "주소 복사",
-          copiado: "주소를 복사했습니다. 브라우저나 메시지에 붙여 넣으십시오.",
-          selecionado: "주소가 선택되었습니다. 길게 눌러 복사하십시오.",
           android: "Android 휴대전화 또는 태블릿",
           ios: "iPhone 또는 iPad",
           computador: "컴퓨터",
           seu: "내 기기",
-          and1: "이 페이지를 <strong>Chrome</strong>에서 엽니다.",
           and2: "페이지 위쪽의 <strong>지금 설치</strong>를 누릅니다. 버튼이 보이지 않으면 Chrome 메뉴(위쪽 모서리의 <strong>점 세 개</strong>)를 열고 <strong>앱 설치</strong> 또는 <strong>홈 화면에 추가</strong>를 누릅니다.",
           and3: "<strong>설치</strong>를 눌러 확인합니다. 홈 화면에 보라색 Kobi Org 아이콘이 나타납니다.",
           sempre: "앱은 언제나 이 아이콘으로 여십시오.",
-          ios1: "이 페이지를 <strong>Safari</strong>에서 엽니다.",
           ios2: "<strong>공유</strong>(위쪽 화살표가 있는 네모)를 누릅니다. iPhone은 아래쪽 막대, iPad는 위쪽에 있습니다.",
           ios3: "목록을 내려 <strong>홈 화면에 추가</strong>를 누릅니다.",
           ios4: "<strong>추가</strong>를 누릅니다. 홈 화면에 Kobi Org 아이콘이 나타납니다.",
@@ -904,18 +856,13 @@
           lema: "جداول المناوبة وبرنامج الاجتماعات والخطاب العام والخدمة العلنية والمقاطعات وجدول أعمال اجتماع الشيوخ، في تطبيق يعيش على جهازك. مجاني، بلا حساب وبلا سحابة — ويعمل دون إنترنت بعد الفتح الأول.",
           instalar: "ثبّت الآن",
           abrir: "افتح Kobi Org",
-          copiar: "انسخ العنوان",
-          copiado: "نُسخ العنوان. ألصقه الآن في المتصفح أو في رسالة.",
-          selecionado: "العنوان محدَّد: المس مطوّلًا لنسخه.",
           android: "هاتف أو جهاز لوحي بنظام Android",
           ios: "iPhone أو iPad",
           computador: "الحاسوب",
           seu: "جهازك",
-          and1: "افتح هذه الصفحة في <strong>Chrome</strong>.",
           and2: "المس <strong>ثبّت الآن</strong> في أعلى الصفحة. إن لم يظهر الزر، افتح قائمة Chrome (<strong>النقاط الثلاث</strong> في الزاوية العليا) والمس <strong>تثبيت التطبيق</strong> أو <strong>إضافة إلى الشاشة الرئيسية</strong>.",
           and3: "أكّد بلمس <strong>تثبيت</strong>. تظهر أيقونة Kobi Org البنفسجية على الشاشة الرئيسية.",
           sempre: "افتح التطبيق دائمًا من هذه الأيقونة.",
-          ios1: "افتح هذه الصفحة في <strong>Safari</strong>.",
           ios2: "المس <strong>مشاركة</strong>، أي المربع الذي يخرج منه سهم إلى الأعلى (في iPhone يكون في الشريط السفلي، وفي iPad في الأعلى).",
           ios3: "مرّر القائمة والمس <strong>إضافة إلى الشاشة الرئيسية</strong>.",
           ios4: "المس <strong>إضافة</strong>. تظهر أيقونة Kobi Org على الشاشة الرئيسية.",
@@ -952,18 +899,13 @@
           lema: "Orè sèvis yo, pwogram reyinyon yo, diskou piblik la, temwayaj piblik la, tèritwa yo ak pwogram reyinyon ansyen yo, nan yon aplikasyon ki rete sou aparèy ou. Gratis, san kont e san nwaj — epi li mache san entènèt apre premye fwa ou louvri l.",
           instalar: "Enstale kounye a",
           abrir: "Louvri Kobi Org",
-          copiar: "Kopye adrès la",
-          copiado: "Adrès la kopye. Kounye a, jis kole l nan navigatè a oswa nan yon mesaj.",
-          selecionado: "Adrès la chwazi: kenbe dwèt ou sou li pou kopye l.",
           android: "Telefòn oswa tablèt Android",
           ios: "iPhone oswa iPad",
           computador: "Òdinatè",
           seu: "pa w la",
-          and1: "Louvri paj sa a nan <strong>Chrome</strong>.",
           and2: "Touche <strong>Enstale kounye a</strong>, anlè paj la. Si bouton an pa parèt, louvri meni Chrome nan (<strong>twa ti pwen</strong> yo, nan kwen anlè a) epi touche <strong>Installer l'application</strong> oswa <strong>Ajouter à l'écran d'accueil</strong>.",
           and3: "Konfime ak <strong>Installer</strong>. Ikòn vyolèt Kobi Org la parèt sou ekran prensipal la.",
           sempre: "Toujou louvri aplikasyon an pa ikòn sa a.",
-          ios1: "Louvri paj sa a nan <strong>Safari</strong>.",
           ios2: "Touche <strong>Partager</strong>, kare ki gen flèch ki monte a (sou iPhone li nan ba anba a; sou iPad, anlè).",
           ios3: "Desann lis la epi touche <strong>Sur l'écran d'accueil</strong>.",
           ios4: "Touche <strong>Ajouter</strong>. Ikòn Kobi Org la parèt sou ekran prensipal la.",
@@ -998,8 +940,6 @@
       const marcados = [...document.querySelectorAll('[data-t]')];
       const pt = {
         titulo: document.title,
-        copiado: "Endereço copiado. Agora é só colar no navegador ou na mensagem.",
-        selecionado: "O endereço está selecionado: toque e segure para copiar.",
         jaInstalado: "O Kobi Org já está instalado neste aparelho.",
         instalou: "Pronto: o Kobi Org foi instalado. Abra pelo ícone dele.",
       };
@@ -1079,32 +1019,6 @@
       const doAparelho = document.getElementById(aparelho);
       doAparelho.querySelector('.seu').hidden = false;
       doAparelho.parentElement.insertBefore(doAparelho, document.getElementById('android'));
-
-      /*
-       * Copiar o endereço do app (ele não aparece na página). Sem a área de
-       * transferência (http, navegador antigo), ele aparece no aviso,
-       * selecionado, para a pessoa copiar à mão.
-       */
-      const endereco = 'https://org.luizcmarin.com.br/';
-      document.getElementById('copiar').addEventListener('click', () => {
-        const selecionar = () => {
-          avisar('selecionado');
-          const link = document.createElement('span');
-          link.className = 'endereco__link';
-          link.textContent = endereco;
-          estado.append(link);
-          const faixa = document.createRange();
-          faixa.selectNodeContents(link);
-          const selecao = window.getSelection();
-          selecao.removeAllRanges();
-          selecao.addRange(faixa);
-        };
-        try {
-          navigator.clipboard.writeText(endereco).then(() => avisar('copiado'), selecionar);
-        } catch {
-          selecionar();
-        }
-      });
 
       const botao = document.getElementById('instalar');
       const abrir = document.getElementById('abrir');
