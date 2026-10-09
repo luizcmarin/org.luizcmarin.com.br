@@ -22,10 +22,11 @@
     O `<link rel="manifest">` é o do app: com ele o Chrome oferece a instalação
     daqui mesmo (o `beforeinstallprompt`), e o botão "Instalar agora" aparece.
     Quem instala ganha o `start_url` do manifest, que é o app, e não esta
-    página. Com o app já instalado, aparece o "Desinstalar", que leva aos
-    passos de cada aparelho (página nenhuma desinstala um app). O registro
-    do service worker é o mesmo do app (mesmo arquivo, mesmo escopo): o app
-    instalado daqui já abre sem internet.
+    página. Com o app já instalado, aparecem o "Criar o atalho" e o
+    "Desinstalar", que levam aos passos de cada aparelho (página nenhuma cria
+    o atalho de um app nem o desinstala). O registro do service worker é o
+    mesmo do app (mesmo arquivo, mesmo escopo): o app instalado daqui já abre
+    sem internet.
   -->
 <html lang="pt-BR">
 
@@ -380,6 +381,7 @@
           Instalar agora
         </button>
         <a class="botao botao--cheio" id="abrir" href="./" data-t="abrir">Abrir o Kobi Org</a>
+        <button type="button" class="botao" id="atalho" data-t="atalho" hidden>Criar o atalho</button>
         <button type="button" class="botao" id="desinstalar" data-t="desinstalar" hidden>Desinstalar</button>
       </div>
       <p class="estado" id="estado" role="status"></p>
@@ -494,6 +496,26 @@
       </p>
     </section>
 
+    <section id="criar-atalho" aria-labelledby="titulo-atalho">
+      <h2 id="titulo-atalho" tabindex="-1"><span data-t="atTitulo">Para criar o atalho</span></h2>
+      <ul class="lista">
+        <li data-t="atAnd">
+          <strong>Android:</strong> abra a lista de apps do aparelho (deslize a tela inicial para cima),
+          toque e segure o Kobi Org e arraste-o para a tela inicial, ou toque em
+          <strong>Adicionar à tela inicial</strong>.
+        </li>
+        <li data-t="atIos">
+          <strong>iPhone ou iPad:</strong> o ícone é o próprio app. Se ele não está em nenhuma página da
+          Tela de Início, o app não está instalado: siga os passos do iPhone, acima.
+        </li>
+        <li data-t="atPc">
+          <strong>Computador:</strong> abra o Kobi Org e, com ele aberto, clique com o botão direito no
+          ícone dele na barra de tarefas e em <strong>Fixar na barra de tarefas</strong> (no Mac, no
+          Dock: <strong>Opções</strong> › <strong>Manter no Dock</strong>).
+        </li>
+      </ul>
+    </section>
+
     <section id="desinstalacao" aria-labelledby="titulo-desinstalacao">
       <h2 id="titulo-desinstalacao" tabindex="-1"><span data-t="desTitulo">Para desinstalar</span></h2>
       <p class="alerta" data-t="desBackup">
@@ -577,6 +599,11 @@
           dep2: "Everything you enter stays <strong>only on your device</strong>, encrypted. Nothing goes to any server, and nothing leaves it unless you send it.",
           dep3: "When a new version comes out, the app itself lets you know. Just tap the notice to update.",
           backup: "<strong>No one can recover a forgotten password</strong>, not even us: without it, the only way is to erase everything from the device and restore a backup. Changing devices, uninstalling the app or clearing the browser data also erases what is in it. So, from time to time, open <strong>About</strong> › <strong>Backup and restore</strong>, tap <strong>Download backup</strong> and keep the file off the device, in a safe place: it holds people's data.",
+          atalho: "Create the shortcut",
+          atTitulo: "To create the shortcut",
+          atAnd: "<strong>Android:</strong> open the device's app list (swipe up on the home screen), touch and hold Kobi Org and drag it to the home screen, or tap <strong>Add to Home screen</strong>.",
+          atIos: "<strong>iPhone or iPad:</strong> the icon is the app itself. If it is not on any page of the Home Screen, the app is not installed: follow the iPhone steps above.",
+          atPc: "<strong>Computer:</strong> open Kobi Org and, while it is open, right-click its icon on the taskbar and choose <strong>Pin to taskbar</strong> (on a Mac, in the Dock: <strong>Options</strong> › <strong>Keep in Dock</strong>).",
           desinstalar: "Uninstall",
           desTitulo: "To uninstall",
           desAnd: "<strong>Android:</strong> touch and hold the Kobi Org icon and tap <strong>Uninstall</strong>.",
@@ -620,6 +647,11 @@
           dep2: "Todo lo que registras se queda <strong>solo en tu dispositivo</strong>, cifrado. Nada va a ningún servidor, y nada sale de él salvo cuando tú lo envías.",
           dep3: "Cuando salga una versión nueva, la propia aplicación te avisa. Basta con tocar el aviso para actualizar.",
           backup: "<strong>Nadie puede recuperar una contraseña olvidada</strong>, ni siquiera nosotros: sin ella, el único camino es borrar todo del dispositivo y restaurar una copia de seguridad. Además, cambiar de dispositivo, desinstalar la aplicación o borrar los datos del navegador elimina lo que hay en ella. Por eso, de vez en cuando, abre <strong>Acerca de</strong> › <strong>Copia de seguridad y restauración</strong>, toca <strong>Descargar copia</strong> y guarda el archivo fuera del dispositivo, en un lugar seguro: contiene los datos de las personas.",
+          atalho: "Crear el acceso directo",
+          atTitulo: "Para crear el acceso directo",
+          atAnd: "<strong>Android:</strong> abre la lista de aplicaciones del dispositivo (desliza hacia arriba en la pantalla de inicio), mantén pulsado Kobi Org y arrástralo a la pantalla de inicio, o toca <strong>Añadir a pantalla de inicio</strong>.",
+          atIos: "<strong>iPhone o iPad:</strong> el icono es la propia aplicación. Si no está en ninguna página de la pantalla de inicio, la aplicación no está instalada: sigue los pasos del iPhone, más arriba.",
+          atPc: "<strong>Ordenador:</strong> abre Kobi Org y, con la aplicación abierta, haz clic con el botón derecho en su icono de la barra de tareas y elige <strong>Anclar a la barra de tareas</strong> (en el Mac, en el Dock: <strong>Opciones</strong> › <strong>Mantener en el Dock</strong>).",
           desinstalar: "Desinstalar",
           desTitulo: "Para desinstalar",
           desAnd: "<strong>Android:</strong> mantén pulsado el icono de Kobi Org y toca <strong>Desinstalar</strong>.",
@@ -663,6 +695,11 @@
           dep2: "Wszystko, co wprowadzisz, zostaje <strong>tylko na twoim urządzeniu</strong>, zaszyfrowane. Nic nie trafia na żaden serwer i nic stąd nie wychodzi, chyba że sam to wyślesz.",
           dep3: "Gdy wyjdzie nowa wersja, aplikacja sama o tym powie. Wystarczy dotknąć powiadomienia, aby ją zaktualizować.",
           backup: "<strong>Nikt nie odzyska zapomnianego hasła</strong>, nawet my: bez niego jedyną drogą jest usunięcie wszystkiego z urządzenia i przywrócenie kopii zapasowej. Zmiana urządzenia, odinstalowanie aplikacji lub wyczyszczenie danych przeglądarki także usuwa to, co w niej jest. Dlatego co jakiś czas otwórz <strong>O aplikacji</strong> › <strong>Kopia zapasowa i przywracanie</strong>, dotknij <strong>Pobierz kopię</strong> i przechowuj plik poza urządzeniem, w bezpiecznym miejscu: zawiera dane innych osób.",
+          atalho: "Utwórz skrót",
+          atTitulo: "Jak utworzyć skrót",
+          atAnd: "<strong>Android:</strong> otwórz listę aplikacji (przesuń palcem w górę na ekranie głównym), dotknij i przytrzymaj Kobi Org i przeciągnij na ekran główny albo dotknij <strong>Dodaj do ekranu głównego</strong>.",
+          atIos: "<strong>iPhone lub iPad:</strong> ikona to sama aplikacja. Jeśli nie ma jej na żadnej stronie ekranu początkowego, aplikacja nie jest zainstalowana: wykonaj kroki dla iPhone'a podane wyżej.",
+          atPc: "<strong>Komputer:</strong> otwórz Kobi Org i, gdy jest otwarty, kliknij prawym przyciskiem jego ikonę na pasku zadań, a potem <strong>Przypnij do paska zadań</strong> (na Macu, w Docku: <strong>Opcje</strong> › <strong>Zachowaj w Docku</strong>).",
           desinstalar: "Odinstaluj",
           desTitulo: "Jak odinstalować",
           desAnd: "<strong>Android:</strong> dotknij i przytrzymaj ikonę Kobi Org, a potem dotknij <strong>Odinstaluj</strong>.",
@@ -706,6 +743,11 @@
           dep2: "Усе, що ти вносиш, залишається <strong>лише на твоєму пристрої</strong>, у зашифрованому вигляді. Ніщо не надходить на жоден сервер і ніщо звідси не виходить, поки ти сам не надішлеш.",
           dep3: "Коли вийде нова версія, застосунок сам повідомить. Досить торкнутися сповіщення, щоб оновити.",
           backup: "<strong>Ніхто не може відновити забутий пароль</strong>, навіть ми: без нього єдиний шлях — стерти все з пристрою й відновити резервну копію. Зміна пристрою, видалення застосунку чи очищення даних браузера теж стирає те, що в ньому є. Тож час від часу відкривай <strong>Про застосунок</strong> › <strong>Резервна копія і відновлення</strong>, торкнися <strong>Завантажити копію</strong> і зберігай файл поза пристроєм, у надійному місці: у ньому дані людей.",
+          atalho: "Створити ярлик",
+          atTitulo: "Як створити ярлик",
+          atAnd: "<strong>Android:</strong> відкрий список застосунків (проведи вгору на головному екрані), торкнися й утримуй Kobi Org і перетягни його на головний екран або торкнися <strong>Додати на головний екран</strong>.",
+          atIos: "<strong>iPhone або iPad:</strong> значок — це і є застосунок. Якщо його немає на жодній сторінці Початкового екрана, застосунок не встановлено: виконай кроки для iPhone вище.",
+          atPc: "<strong>Комп'ютер:</strong> відкрий Kobi Org і, поки він відкритий, клацни правою кнопкою його значок на панелі завдань і вибери <strong>Закріпити на панелі завдань</strong> (на Mac, у Dock: <strong>Параметри</strong> › <strong>Залишити в Dock</strong>).",
           desinstalar: "Видалити",
           desTitulo: "Як видалити",
           desAnd: "<strong>Android:</strong> торкнися й утримуй значок Kobi Org і торкнися <strong>Видалити</strong>.",
@@ -749,6 +791,11 @@
           dep2: "登録したものはすべて暗号化され、<strong>あなたの端末の中だけ</strong>に残ります。どのサーバーにも送られず、あなたが送らない限り外に出ることはありません。",
           dep3: "新しいバージョンが出ると、アプリが知らせます。お知らせをタップすれば更新されます。",
           backup: "<strong>忘れたパスワードは誰にも取り戻せません。</strong>私たちにもできません。パスワードがなければ、端末からすべてを消去してバックアップを復元するしかありません。また、端末の買い替え、アプリの削除、ブラウザのデータ消去でも中身は消えます。ですから、ときどき<strong>このアプリについて</strong> › <strong>バックアップと復元</strong>を開き、<strong>バックアップをダウンロード</strong>をタップして、ファイルを端末の外の安全な場所に保管してください。ファイルにはほかの人の情報が入っています。",
+          atalho: "ショートカットを作成",
+          atTitulo: "ショートカットを作成するには",
+          atAnd: "<strong>Android：</strong>端末のアプリ一覧を開き（ホーム画面を上にスワイプ）、Kobi Org を長押ししてホーム画面にドラッグするか、<strong>ホーム画面に追加</strong>をタップします。",
+          atIos: "<strong>iPhone・iPad：</strong>アイコンがアプリそのものです。ホーム画面のどのページにもなければ、アプリはインストールされていません。上の iPhone の手順に従ってください。",
+          atPc: "<strong>パソコン：</strong>Kobi Org を開き、開いたまま、タスクバーのアイコンを右クリックして<strong>タスクバーにピン留めする</strong>を選びます（Mac では Dock で<strong>オプション</strong> › <strong>Dockに残す</strong>）。",
           desinstalar: "アンインストール",
           desTitulo: "アンインストールするには",
           desAnd: "<strong>Android：</strong>Kobi Org のアイコンを長押しして、<strong>アンインストール</strong>をタップします。",
@@ -792,6 +839,11 @@
           dep2: "你录入的一切都经过加密，<strong>只保存在你的设备上</strong>，不会发送到任何服务器；除非你自己发送，否则什么都不会离开设备。",
           dep3: "有新版本时，应用会自己提醒你。点按提示即可更新。",
           backup: "<strong>忘记的密码谁也找不回来</strong>，连我们也不行：没有密码，唯一的办法就是删除设备上的一切，再恢复备份。更换设备、卸载应用或清除浏览器数据，也会删除其中的内容。所以请不时打开<strong>关于</strong> › <strong>备份和恢复</strong>，点按<strong>下载备份</strong>，把文件保存在设备之外的安全地方：里面有别人的资料。",
+          atalho: "创建快捷方式",
+          atTitulo: "如何创建快捷方式",
+          atAnd: "<strong>Android：</strong>打开设备的应用列表（在主屏幕上向上滑动），按住 Kobi Org，把它拖到主屏幕，或点按<strong>添加到主屏幕</strong>。",
+          atIos: "<strong>iPhone 或 iPad：</strong>图标就是应用本身。如果主屏幕的每一页上都没有它，说明应用没有安装：请按照上面 iPhone 的步骤操作。",
+          atPc: "<strong>电脑：</strong>打开 Kobi Org，在它打开时，右键点击任务栏上的图标，选择<strong>固定到任务栏</strong>（在 Mac 上，在程序坞中选择<strong>选项</strong> › <strong>在程序坞中保留</strong>）。",
           desinstalar: "卸载",
           desTitulo: "如何卸载",
           desAnd: "<strong>Android：</strong>按住 Kobi Org 的图标，点按<strong>卸载</strong>。",
@@ -835,6 +887,11 @@
           dep2: "등록한 모든 내용은 암호화되어 <strong>내 기기에만</strong> 남습니다. 어떤 서버로도 가지 않으며, 직접 보내지 않는 한 아무것도 나가지 않습니다.",
           dep3: "새 버전이 나오면 앱이 직접 알려 줍니다. 알림을 누르면 업데이트됩니다.",
           backup: "<strong>잊어버린 비밀번호는 누구도 되찾을 수 없습니다.</strong> 저희도 마찬가지입니다. 비밀번호가 없으면 기기에서 모든 것을 지우고 백업을 복원하는 방법밖에 없습니다. 또한 기기를 바꾸거나 앱을 삭제하거나 브라우저 데이터를 지워도 그 안의 내용이 사라집니다. 그러므로 가끔 <strong>정보</strong> › <strong>백업 및 복원</strong>을 열고 <strong>백업 내려받기</strong>를 누른 뒤, 파일을 기기 밖의 안전한 곳에 보관하십시오. 파일에는 다른 사람들의 정보가 들어 있습니다.",
+          atalho: "바로가기 만들기",
+          atTitulo: "바로가기를 만드는 방법",
+          atAnd: "<strong>Android:</strong> 기기의 앱 목록을 열고(홈 화면에서 위로 스와이프) Kobi Org를 길게 누른 다음 홈 화면으로 끌어 놓거나 <strong>홈 화면에 추가</strong>를 누릅니다.",
+          atIos: "<strong>iPhone 또는 iPad:</strong> 아이콘이 곧 앱입니다. 홈 화면의 어느 페이지에도 없다면 앱이 설치되지 않은 것입니다. 위의 iPhone 단계를 따르십시오.",
+          atPc: "<strong>컴퓨터:</strong> Kobi Org를 열고, 열려 있는 동안 작업 표시줄의 아이콘을 마우스 오른쪽 버튼으로 클릭한 다음 <strong>작업 표시줄에 고정</strong>을 선택합니다(Mac에서는 Dock에서 <strong>옵션</strong> › <strong>Dock에 유지</strong>).",
           desinstalar: "제거",
           desTitulo: "제거하는 방법",
           desAnd: "<strong>Android:</strong> Kobi Org 아이콘을 길게 누른 다음 <strong>제거</strong> 또는 <strong>설치 삭제</strong>를 누릅니다.",
@@ -878,6 +935,11 @@
           dep2: "كل ما تُدخله يبقى <strong>على جهازك وحده</strong>، مشفّرًا. لا يذهب شيء إلى أي خادم، ولا يخرج منه شيء ما لم ترسله أنت.",
           dep3: "عند صدور إصدار جديد ينبّهك التطبيق بنفسه. يكفي أن تلمس التنبيه للتحديث.",
           backup: "<strong>لا أحد يستطيع استرجاع كلمة سر منسية</strong>، ولا حتى نحن: بدونها لا سبيل إلا محو كل شيء من الجهاز واستعادة نسخة احتياطية. كما أن تغيير الجهاز أو حذف التطبيق أو مسح بيانات المتصفح يمحو ما فيه. لذلك افتح من حين لآخر <strong>حول التطبيق</strong> › <strong>النسخ الاحتياطي والاستعادة</strong>، والمس <strong>تنزيل النسخة الاحتياطية</strong>، واحفظ الملف خارج الجهاز في مكان آمن: ففيه بيانات الأشخاص.",
+          atalho: "إنشاء الاختصار",
+          atTitulo: "لإنشاء الاختصار",
+          atAnd: "<strong>Android:</strong> افتح قائمة التطبيقات في الجهاز (اسحب لأعلى على الشاشة الرئيسية)، والمس Kobi Org مطوّلًا واسحبه إلى الشاشة الرئيسية، أو المس <strong>إضافة إلى الشاشة الرئيسية</strong>.",
+          atIos: "<strong>iPhone أو iPad:</strong> الأيقونة هي التطبيق نفسه. إن لم تكن في أي صفحة من الشاشة الرئيسية، فالتطبيق غير مثبّت: اتبع خطوات iPhone أعلاه.",
+          atPc: "<strong>الحاسوب:</strong> افتح Kobi Org، وبينما هو مفتوح انقر بزر الفأرة الأيمن على أيقونته في شريط المهام واختر <strong>تثبيت على شريط المهام</strong> (في Mac، في Dock: <strong>خيارات</strong> › <strong>الإبقاء في Dock</strong>).",
           desinstalar: "إلغاء التثبيت",
           desTitulo: "لإلغاء التثبيت",
           desAnd: "<strong>Android:</strong> المس أيقونة Kobi Org مطوّلًا، ثم المس <strong>إلغاء التثبيت</strong>.",
@@ -921,6 +983,11 @@
           dep2: "Tout sa ou anrejistre rete <strong>sèlman sou aparèy ou</strong>, chifre. Anyen pa ale sou okenn sèvè, e anyen pa soti ladan l si se pa ou ki voye l.",
           dep3: "Lè yon nouvo vèsyon soti, aplikasyon an li menm avèti w. Ou jis touche avi a pou mete l ajou.",
           backup: "<strong>Pèsonn pa ka rekipere yon modpas ou bliye</strong>, menm nou menm: san li, sèl chemen an se efase tout bagay sou aparèy la epi restore yon kopi sekirite. Chanje aparèy, dezenstale aplikasyon an oswa efase done navigatè a efase sa ki ladan l tou. Se poutèt sa, de tanzantan, louvri <strong>Konsènan</strong> › <strong>Kopi sekirite ak restorasyon</strong>, touche <strong>Telechaje kopi sekirite a</strong> epi sere fichye a andeyò aparèy la, yon kote ki an sekirite: li gen done moun yo ladan l.",
+          atalho: "Kreye rakousi a",
+          atTitulo: "Pou kreye rakousi a",
+          atAnd: "<strong>Android:</strong> louvri lis aplikasyon aparèy la (glise dwèt ou monte sou ekran prensipal la), kenbe dwèt ou sou Kobi Org epi trennen l sou ekran prensipal la, oswa touche <strong>Ajouter à l'écran d'accueil</strong>.",
+          atIos: "<strong>iPhone oswa iPad:</strong> ikòn nan se aplikasyon an li menm. Si li pa sou okenn paj nan ekran prensipal la, aplikasyon an pa enstale: swiv etap iPhone yo pi wo a.",
+          atPc: "<strong>Òdinatè:</strong> louvri Kobi Org epi, pandan li louvri, klike ak bouton dwat sourit la sou ikòn li nan ba travay la epi chwazi <strong>Épingler à la barre des tâches</strong> (sou Mac, nan Dock la: <strong>Options</strong> › <strong>Garder dans le Dock</strong>).",
           desinstalar: "Dezenstale",
           desTitulo: "Pou dezenstale",
           desAnd: "<strong>Android:</strong> kenbe dwèt ou sou ikòn Kobi Org la epi touche <strong>Désinstaller</strong>.",
@@ -1028,12 +1095,14 @@
         window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 
       /*
-       * Nenhuma página desinstala um app: o "Desinstalar" leva aos passos do
-       * aparelho. Ele só aparece com o app instalado — esta página aberta na
-       * janela do app ou, na aba do Chrome, pelo `getInstalledRelatedApps` (o
-       * `related_applications` do manifest aponta para ele mesmo). O Safari não
-       * conta: os passos ficam na página para quem os procurar.
+       * Nenhuma página cria o atalho de um app nem o desinstala: o "Criar o
+       * atalho" e o "Desinstalar" levam aos passos do aparelho. Eles só
+       * aparecem com o app instalado — esta página aberta na janela do app
+       * ou, na aba do Chrome, pelo `getInstalledRelatedApps` (o
+       * `related_applications` do manifest aponta para ele mesmo). O Safari
+       * não conta: os passos ficam na página para quem os procurar.
        */
+      const atalho = document.getElementById('atalho');
       const desinstalar = document.getElementById('desinstalar');
       const jaInstalado = async () => {
         if (instalado()) return true;
@@ -1046,15 +1115,19 @@
       };
       jaInstalado().then((sim) => {
         if (!sim) return;
+        atalho.hidden = false;
         desinstalar.hidden = false;
         avisar('jaInstalado');
       });
 
-      desinstalar.addEventListener('click', () => {
+      // O botão rola até a seção dele, e o foco vai ao título (o leitor de tela o anuncia).
+      const levarA = (secao, titulo) => {
         const suave = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
-        document.getElementById('desinstalacao').scrollIntoView({ behavior: suave ? 'smooth' : 'auto' });
-        document.getElementById('titulo-desinstalacao').focus({ preventScroll: true });
-      });
+        document.getElementById(secao).scrollIntoView({ behavior: suave ? 'smooth' : 'auto' });
+        document.getElementById(titulo).focus({ preventScroll: true });
+      };
+      atalho.addEventListener('click', () => levarA('criar-atalho', 'titulo-atalho'));
+      desinstalar.addEventListener('click', () => levarA('desinstalacao', 'titulo-desinstalacao'));
 
       // Com a instalação na mão, ela é o botão cheio, e o "Abrir" passa a vazado.
       window.addEventListener('beforeinstallprompt', (evento) => {
@@ -1076,6 +1149,7 @@
       window.addEventListener('appinstalled', () => {
         botao.hidden = true;
         abrir.classList.add('botao--cheio');
+        atalho.hidden = false;
         desinstalar.hidden = false;
         avisar('instalou');
       });
